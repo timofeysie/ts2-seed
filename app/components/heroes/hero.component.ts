@@ -1,27 +1,40 @@
+/** This class takes the place of app.component.ts from the tutorial. */
 import {Component} from 'angular2/core';
+import {OnInit} from 'angular2/core';
 import {Hero} from './hero';
+import {HeroService} from '../../services/hero.service';
 import {HeroDetailComponent} from './hero-detail.component';
 @Component({
   selector: 'hero-selector',
   templateUrl: './components/heroes/hero-master.template.html',
   styleUrls: ['./components/heroes/hero-styles.css'],
-  directives: [HeroDetailComponent]
+  directives: [HeroDetailComponent],
+  providers: [HeroService]
 })
-export class HeroComponent {
+export class HeroComponent implements OnInit {
+    /** private variable (not part of the component's public API)
+     * start with a _      */
+    constructor(private _heroService: HeroService) { }
   public title = 'Tour of Heroes';
-  public heroes = HEROES;
+  public heroes: Hero[];
   public selectedHero: Hero;
+  /** Angular will call getHeroes if we implement the ngOnInit Lifecycle Hook. 
+   * Angular offers a number of interfaces for tapping into critical moments in the component lifecycle:
+   * at creation, after each change, and at its eventual destruction.
+   * Each interface has a single method. When the component implements that method, 
+   * Angular calls it at the appropriate time. */
+  ngOnInit() {
+    this.getHeroes();
+  }
   onSelect(hero: Hero) { this.selectedHero = hero; }
+  getHeroes() {
+    this._heroService.getHeroes().then(
+        heroes => this.heroes = heroes);
+    // the slower method below uses a timeout to simulate a real connection.
+    // But it causes the following errors in VSCode:
+    // type '{}' is not assignable to type 'Hero[]'
+    // property length is missing in type '{}'
+    // this._heroService.getHeroesSlowly().then(
+    //     heroes => this.heroes = heroes);
+  }
 }
-var HEROES: Hero[] = [
-  { 'id': 11, 'name': 'Mr. Nice' },
-  { 'id': 12, 'name': 'Narco' },
-  { 'id': 13, 'name': 'Bombasto' },
-  { 'id': 14, 'name': 'Celeritas' },
-  { 'id': 15, 'name': 'Magneta' },
-  { 'id': 16, 'name': 'RubberMan' },
-  { 'id': 17, 'name': 'Dynama' },
-  { 'id': 18, 'name': 'Dr IQ' },
-  { 'id': 19, 'name': 'Magma' },
-  { 'id': 20, 'name': 'Tornado' }
-];
