@@ -4,11 +4,12 @@ import {OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroService} from '../../services/hero.service';
 import {HeroDetailComponent} from './hero-detail.component';
+import {HeroFormComponent} from './hero-form.component';
 @Component({
   selector: 'hero-selector',
   templateUrl: './components/heroes/hero-master.template.html',
   styleUrls: ['./components/heroes/hero-styles.css'],
-  directives: [HeroDetailComponent],
+  directives: [HeroDetailComponent, HeroFormComponent],
   providers: [HeroService]
 })
 export class HeroComponent implements OnInit {
@@ -29,7 +30,13 @@ export class HeroComponent implements OnInit {
   onSelect(hero: Hero) { this.selectedHero = hero; }
   getHeroes() {
     this._heroService.getHeroes().then(
-        heroes => this.heroes = heroes);
+        heroes => {
+            this.heroes = heroes;
+            let myHero =  new Hero(42, 'SkyDog', 
+                       'Fetch any object at any distance', 'Leslie Rollover');
+            console.log('My hero is called ' + myHero.name); // "My hero is called SkyDog"
+            this.heroes.push(myHero);
+        });
     // the slower method below uses a timeout to simulate a real connection.
     // But it causes the following errors in VSCode:
     // type '{}' is not assignable to type 'Hero[]'

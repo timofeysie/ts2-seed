@@ -7,7 +7,7 @@ import {
 
 import {HomeCmp} from '../home/home';
 import {AboutCmp} from '../about/about';
-import {HeroComponent} from '../heroes/hero.component';
+import {HeroComponent} from '../heroes/hero-master.component';
 import {NameList} from '../../services/name_list';
 
 @Component({

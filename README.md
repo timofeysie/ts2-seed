@@ -1,18 +1,51 @@
-# Introduction
-
 [![Join the chat at https://gitter.im/mgechev/angular2-seed](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mgechev/angular2-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://david-dm.org/mgechev/angular2-seed.svg)](https://david-dm.org/mgechev/angular2-seed)
 [![devDependency Status](https://david-dm.org/mgechev/angular2-seed/dev-status.svg)](https://david-dm.org/mgechev/angular2-seed#info=devDependencies)
 [![Build Status](https://travis-ci.org/mgechev/angular2-seed.svg?branch=master)](https://travis-ci.org/mgechev/angular2-seed)
 
+#Development
+This app contains typings for Anfular and TypeScript used in the VS Code editor.
+It uses the normal git development cycle:
+```
+$ npm start (to start the watch and run the server)
+$ git add .
+$ git commit -a -m "Commit note about what you changed"
+$ git push origin master
+```
+This project uses the Bootstrap version found [here](https://www.npmjs.com/package/bootstrap).
+
 # Problems
 
-##EXCEPTION: Error during instantiation of Token Promise<ComponentRef>!.
-angular2.min.js:17 EXCEPTION: Error during instantiation of Token Promise<ComponentRef>!.t.logError @ angular2.min.js:17t.logGroup @ angular2.min.js:17e.call @ angular2.min.js:1(anonymous function) @ angular2.min.js:11run @ angular2-polyfills.js:138(anonymous function) @ angular2.min.js:4e.run @ angular2.min.js:4t.bootstrap @ angular2.min.js:11n @ angular2.min.js:19(anonymous function) @ bootstrap.ts:6(anonymous function) @ bootstrap.ts:10__exec @ system.src.js:1414entry.execute @ system.src.js:3631linkDynamicModule @ system.src.js:3018link @ system.src.js:2861execute @ system.src.js:3193doDynamicExecute @ system.src.js:716link @ system.src.js:909doLink @ system.src.js:570updateLinkSetOnLoad @ system.src.js:618(anonymous function) @ system.src.js:430run @ angular2-polyfills.js:138zoneBoundFn @ angular2-polyfills.js:111lib$es6$promise$$internal$$tryCatch @ angular2-polyfills.js:1511lib$es6$promise$$internal$$invokeCallback @ angular2-polyfills.js:1523lib$es6$promise$$internal$$publish @ angular2-polyfills.js:1494(anonymous function) @ angular2-polyfills.js:243run @ angular2-polyfills.js:138zoneBoundFn @ angular2-polyfills.js:111lib$es6$promise$asap$$flush @ angular2-polyfills.js:1305
-angular2.min.js:17 ORIGINAL EXCEPTION: No Directive annotation found on AppCmpt.logError @ angular2.min.js:17e.call @ angular2.min.js:1(anonymous function) @ angular2.min.js:11run @ angular2-polyfills.js:138(anonymous function) @ angular2.min.js:4e.run @ angular2.min.js:4t.bootstrap @ angular2.min.js:11n @ angular2.min.js:19(anonymous function) @ bootstrap.ts:6(anonymous function) @ bootstrap.ts:10__exec @ system.src.js:1414entry.execute @ system.src.js:3631linkDynamicModule @ system.src.js:3018link @ system.src.js:2861execute @ system.src.js:3193doDynamicExecute @ system.src.js:716link @ system.src.js:909doLink @ system.src.js:570updateLinkSetOnLoad @ system.src.js:618(anonymous function) @ system.src.js:430run @ angular2-polyfills.js:138zoneBoundFn @ angular2-polyfills.js:111lib$es6$promise$$internal$$tryCatch @ angular2-polyfills.js:1511lib$es6$promise$$internal$$invokeCallback @ angular2-polyfills.js:1523lib$es6$promise$$internal$$publish @ angular2-polyfills.js:1494(anonymous function) @ angular2-polyfills.js:243run @ angular2-polyfills.js:138zoneBoundFn @ angular2-polyfills.js:111lib$es6$promise$asap$$flush @ angular2-polyfills.js:1305
-angular2.min.js:17 ORIGINAL STACKTRACE:t.logError @ angular2.min.js:17e.call @ angular2.min.js:1(anonymous function) @ angular2.min.js:11run @ angular2-polyfills.js:138(anonymous function) @ angular2.min.js:4e.run @ angular2.min.js:4t.bootstrap @ angular2.min.js:11n @ angular2.min.js:19(anonymous function) @ bootstrap.ts:6(anonymous function) @ bootstrap.ts:10__exec @ system.src.js:1414entry.execute @ system.src.js:3631linkDynamicModule @ system.src.js:3018link @ system.src.js:2861execute @ system.src.js:3193doDynamicExecute @ system.src.js:716link @ system.src.js:909doLink @ system.src.js:570updateLinkSetOnLoad @ system.src.js:618(anonymous function) @ system.src.js:430run @ angular2-polyfills.js:138zoneBoundFn @ angular2-polyfills.js:111lib$es6$promise$$internal$$tryCatch @ angular2-polyfills.js:1511lib$es6$promise$$internal$$invokeCallback @ angular2-polyfills.js:1523lib$es6$promise$$internal$$publish @ angular2-polyfills.js:1494(anonymous function) @ angular2-polyfills.js:243run @ angular2-polyfills.js:138zoneBoundFn @ angular2-polyfills.js:111lib$es6$promise$asap$$flush @ angular2-polyfills.js:1305
-angular2.min.js:17 Error: No Directive annotation found on AppCmp
+###Problems with building the docs
+```
+$ npm run docs
+npm ERR! Darwin 14.0.0
+npm ERR! argv "node" "/usr/local/bin/npm" "run" "gulp" "--" "build.docs"
+npm ERR! node v0.10.35
+npm ERR! npm  v3.5.2
+npm ERR! code ELIFECYCLE
+npm ERR! angular2-seed@0.0.0 gulp: `gulp "build.docs"`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the angular2-seed@0.0.0 gulp script 'gulp "build.docs"'.
+```
 
+###Problems with the tests
+```
+$ npm run karma.start (or just $ npm test)
+ errno: 20,
+  code: 'EMFILE',
+  path: '/Users/tim/angular/ng2/angular2-seed/node_modules/angular2/es6/prod/examples/common/forms/ts' }
+Error: EMFILE, readdir '/Users/tim/angular/ng2/angular2-seed/node_modules/angular2/es6/prod/examples/common/forms/ts'
+ERROR [karma]: [TypeError: Cannot read property 'length' of undefined]
+```
+
+###EXCEPTION: Error during instantiation of Token Promise<ComponentRef>!.
+```
+angular2.min.js:17 EXCEPTION: Error during instantiation of Token Promise<ComponentRef>!.t.logError @ angular2.min.js:17t.logGroup @ angular2.min.js:17e.call @ angular2.min.js:1(anonymous function) @ angular2.min.js:11run @ angular2-polyfills.js:138(anonymous function) @ angular2.min.js:4e.run @ 
+...
+angular2.min.js:17 Error: No Directive annotation found on AppCmp
+```
 This happened after moving the HEROS array declaration before the export class section.
 Did this to try and avoid this:
 variable 'HEROES' used before declaration
@@ -23,7 +56,7 @@ It's a catch 22 apparently.
 fix(build): use ng2 when compiling ts files …
 
 ## Experimental support for decorators is a feature which is subject to change in a future release.  Specify '--experimentalDecorators' to remove this warning.
-SO:
+SO (stands for StackOverflow):
 1. Change "Microsoft.TypeScript.Default.props" ("C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v14.0\TypeScript) changing/adding the following properties:
 <TypeScriptModuleKind>>AMD</TypeScriptModuleKind>
 <TypeScriptEmitDecoratorMetadata>True</TypeScriptEmitDecoratorMetadata>'
@@ -48,7 +81,7 @@ Error: getaddrinfo ENOTFOUND
     at Object.onanswer [as oncomplete] (dns.js:124:16)
     
     
-# Original Content
+# Original Seed README Content
 A seed project for Angular 2 apps.
 
 It is something similar to the AngularJS Quick Start but does the entire build with gulp.
