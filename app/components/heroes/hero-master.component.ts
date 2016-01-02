@@ -1,6 +1,7 @@
 /** This class takes the place of app.component.ts from the tutorial. */
 import {Component} from 'angular2/core';
 import {OnInit} from 'angular2/core';
+import {RouteParams, Router} from 'angular2/router';
 import {Hero} from './hero';
 import {HeroService} from '../../services/hero.service';
 import {HeroDetailComponent} from './hero-detail.component';
@@ -15,7 +16,9 @@ import {HeroFormComponent} from './hero-form.component';
 export class HeroComponent implements OnInit {
     /** private variable (not part of the component's public API)
      * start with a _      */
-    constructor(private _heroService: HeroService) { }
+    constructor(
+        private _router: Router,
+        private _heroService: HeroService) { }
   public title = 'Tour of Heroes';
   public heroes: Hero[];
   public selectedHero: Hero;
@@ -27,15 +30,13 @@ export class HeroComponent implements OnInit {
   ngOnInit() {
     this.getHeroes();
   }
-  onSelect(hero: Hero) { this.selectedHero = hero; }
+  onSelect(hero: Hero) { 
+      this.selectedHero = hero;
+      this._router.navigate( ['HeroDetail', { id: hero.id }] ); }
   getHeroes() {
     this._heroService.getHeroes().then(
         heroes => {
             this.heroes = heroes;
-            let myHero =  new Hero(42, 'SkyDog', 
-                       'Fetch any object at any distance', 'Leslie Rollover');
-            console.log('My hero is called ' + myHero.name); // "My hero is called SkyDog"
-            this.heroes.push(myHero);
         });
     // the slower method below uses a timeout to simulate a real connection.
     // But it causes the following errors in VSCode:

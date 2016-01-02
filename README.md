@@ -14,7 +14,34 @@ $ git push origin master
 ```
 This project uses the Bootstrap version found [here](https://www.npmjs.com/package/bootstrap).
 
+#WIP
+The routing fromt he seed looks like this:
+```
+    <a [routerLink]="['/Heroes']">Heroes</a>
+```
+The routing from the tour look like this;
+```
+    <a [routerLink]="['CrisisCenter']">Crisis Center</a>
+```
+Why is there a slash in front of Heroes and not CrisisCenter?  Only time will tell.
+
+Also, the configuration from the seed does not inculde the name part of the route:
+```
+  { path: '/heroes',        component: HeroComponent, as: 'Heroes' }, 
+```
+Here is the tour config:
+```  
+  { path: '/crisis-center', name: 'CrisisCenter', component: CrisisListComponent},
+```
+The name is so that we can go to a named route if we want.  Couldn't hurt, even though, obviously, since our seed app works fine, it is not really needed.
+
+The Heroes component name is HeroComponent in the seed but HeroListComponent w/ name Heroes in the tour.
+HeroListComponent for the seed we renamed hero-master.component.ts to emphasize the master-detial pattern.
+
 # Problems
+Here are some problems that had to be overcome to get the seed running from the start.
+The Getting Started starting point didn't work out, so we went to the seed which works out of the box.
+It has to do with the tsd files and using VSCode.  The docs are still a work in progress so you have to take the good with the bad and do what you have to to run the samples and work with them at this point.
 
 ###Problems with building the docs
 ```

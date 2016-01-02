@@ -8,6 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- inject:css -->
   <!-- endinject -->
+  <!--<base href="/">-->
+  <!-- the host service sets the application base address dynamically, 
+   so replace the <base href...> with a script that writes a <base> tag on the fly to match.
+   We should only need this trick for the live example, not production code.-->
+  <script>document.write('<base href="' + document.location + '" />');</script>
 </head>
 <body>
 

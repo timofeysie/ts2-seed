@@ -8,6 +8,7 @@ import {
 import {HomeCmp} from '../home/home';
 import {AboutCmp} from '../about/about';
 import {HeroComponent} from '../heroes/hero-master.component';
+import {HeroDetailComponent} from '../heroes/hero-detail.component';
 import {NameList} from '../../services/name_list';
 
 @Component({
@@ -19,8 +20,10 @@ import {NameList} from '../../services/name_list';
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  { path: '/', component: HomeCmp, as: 'Home' },
-  { path: '/heroes', component: HeroComponent, as: 'Heroes' },
-  { path: '/about', component: AboutCmp, as: 'About' }
+  { path: '/',              component: HomeCmp, as: 'Home' },
+  { path: '/heroes',        component: HeroComponent, as: 'Heroes' }, // aka HeroListComponent w/ name Heroes
+  { path: '/about',         component: AboutCmp, as: 'About' },
+//   { path: '/crisis-center', name: 'CrisisCenter', component: CrisisListComponent},
+   { path: '/hero/:id',      name: 'HeroDetail',   component: HeroDetailComponent}
 ])
 export class AppCmp {}
