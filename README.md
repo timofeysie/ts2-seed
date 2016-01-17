@@ -3,8 +3,11 @@
 [![devDependency Status](https://david-dm.org/mgechev/angular2-seed/dev-status.svg)](https://david-dm.org/mgechev/angular2-seed#info=devDependencies)
 [![Build Status](https://travis-ci.org/mgechev/angular2-seed.svg?branch=master)](https://travis-ci.org/mgechev/angular2-seed)
 
+#A TypeScript Angular2 Seed Demo Project
+This is A seed project for Angular 2 apps that you can build with gulp.  It requires node and npm.
+
 #Development
-This app contains typings for Anfular and TypeScript used in the VS Code editor.
+This app contains typings for Anfular and TypeScript to be used in the VS Code editor.
 It uses the normal git development cycle:
 ```
 $ npm start (to start the watch and run the server)
@@ -43,7 +46,7 @@ Here are some problems that had to be overcome to get the seed running from the 
 The Getting Started starting point didn't work out, so we went to the seed which works out of the box.
 It has to do with the tsd files and using VSCode.  The docs are still a work in progress so you have to take the good with the bad and do what you have to to run the samples and work with them at this point.
 
-###Problems with building the docs
+### Problems with building the docs
 ```
 $ npm run docs
 npm ERR! Darwin 14.0.0
@@ -57,7 +60,7 @@ npm ERR!
 npm ERR! Failed at the angular2-seed@0.0.0 gulp script 'gulp "build.docs"'.
 ```
 
-###Problems with the tests
+### Problems with the tests
 ```
 $ npm run karma.start (or just $ npm test)
  errno: 20,
@@ -67,7 +70,7 @@ Error: EMFILE, readdir '/Users/tim/angular/ng2/angular2-seed/node_modules/angula
 ERROR [karma]: [TypeError: Cannot read property 'length' of undefined]
 ```
 
-###EXCEPTION: Error during instantiation of Token Promise<ComponentRef>!.
+### EXCEPTION: Error during instantiation of Token Promise<ComponentRef>!.
 ```
 angular2.min.js:17 EXCEPTION: Error during instantiation of Token Promise<ComponentRef>!.t.logError @ angular2.min.js:17t.logGroup @ angular2.min.js:17e.call @ angular2.min.js:1(anonymous function) @ angular2.min.js:11run @ angular2-polyfills.js:138(anonymous function) @ angular2.min.js:4e.run @ 
 ...
@@ -79,10 +82,10 @@ variable 'HEROES' used before declaration
 But then the app breaks with the above error regarding Token Promise<ComponentRef>
 It's a catch 22 apparently.
 
-## Cannot find module 'angular2/core'
+### Cannot find module 'angular2/core'
 fix(build): use ng2 when compiling ts files …
 
-## Experimental support for decorators is a feature which is subject to change in a future release.  Specify '--experimentalDecorators' to remove this warning.
+### Experimental support for decorators is a feature which is subject to change in a future release.  Specify '--experimentalDecorators' to remove this warning.
 SO (stands for StackOverflow):
 1. Change "Microsoft.TypeScript.Default.props" ("C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v14.0\TypeScript) changing/adding the following properties:
 <TypeScriptModuleKind>>AMD</TypeScriptModuleKind>
@@ -101,13 +104,113 @@ SO: It should work by setting experimentalDecorators: true in your gulpfile or t
 
 We have no csproj file as this is VSCode not VS.  The gulpfile is written in ts.  That's weird.  Where would the flag go?
 
-## npm ERR! Failed at the angular2-seed@0.0.0 start script 'gulp serve --env dev'.
+### npm ERR! Failed at the angular2-seed@0.0.0 start script 'gulp serve --env dev'.
 Doing a ts update doesn't dix the problem this time but causes this error:
 Error: getaddrinfo ENOTFOUND
     at errnoException (dns.js:37:11)
     at Object.onanswer [as oncomplete] (dns.js:124:16)
     
-    
+### type '{}' is not assignable to type 'Hero[]'  
+This is the getHeroes method used in the hero-master.components.ts:
+```
+getHeroes() {
+    this._heroService.getHeroes().then(
+        heroes => {
+            this.heroes = heroes;
+        });
+```
+It causes the following errors in VSCode:
+```
+    type '{}' is not assignable to type 'Hero[]'
+    property length is missing in type '{}'
+```
+It's slower method below uses a timeout to simulate a real connection.  
+```
+getHeroes() {
+     this._heroService.getHeroesSlowly().then(
+         heroes => this.heroes = heroes);
+});    
+```    
+
+### EXCEPTION: Expression ... has changed after it was checked. 
+When trying out the ngClass example from the Angular docs, I ran into this problem with the following code:
+```
+<div onmouseover="toggleStylar()">
+    By <span [ngClass]="setClasses()">Transition Cat</span>!
+</div>
+```
+I wanted to change the classes for an element in a mouseover.  The exception was:
+```
+EXCEPTION: Expression 'setClasses() in HeroComponent@11:17' has changed after it was checked. Previous value: '[object Object]'. Current value: '[object Object]' in [setClasses() in HeroComponent@11:17]
+```    
+This was a chance to see what kind of help the web could provide for Angular2.
+On StackOverflow I found [this discussion](http://stackoverflow.com/questions/34364880/expression-has-changed-after-it-was-checked) which had no accepted answer at the time.
+
+This exception will only be thrown in dev mode where every round of change detection is followed immediately by a second round that verifies no bindings have changed since the end of the first, as this would indicate that changes are being caused by change detection itself.
+
+The discussion takeaway: Anything that changes a binding needs to trigger a round of change detection when it does.
+There was no solution mentioned, but in the notes there was a link to another answer which said this:
+manually run change detection:
+
+Use ApplicationRef::tick() method.
+Use NgZone::run() method to wrap you code which should be executed inside angular zone.
+You can get them by using dependency injection or by bootstrapping your application using platform().application(bindings).bootstrap(Component):
+
+It seems like I'm missing the point on how to do this correctly.
+Really I just wanted to test out ngClass, but went on a tanjent and found this circular issue.
+This first problem with the solution above is that this module cannot be found.
+```
+import { platform } from 'angular2/angular2';
+const app = platform().application([] /* - bindings */); // you can use `app.tick()` 
+const zone = app.zone; // you can use `zone.run`
+
+app.bootstrap(Component);
+```
+You have to use core for the second part of the route.  This was a alpha 46 example.
+Trying to then use the method ```app.tick();``` breaks the entire application.
+And we're getting farther and farther away from playing with ngClass...
+Even getting rid of the onmouseover toggleStylar method, the error remains.
+This is one reason you need to go in small steps.  After implementing the basic example, I should have confirmed it was working but instead I tried to get fancy without looking at the page, and so went on a tanjent I didn't need to go on.
+
+Another discussion can be [found here](https://github.com/angular/angular/issues/6005)
+It references ngStyle in the [same document](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ngclass) where I got the ngClass example code.
+This issue is closed without a solution.  Not good form.  Angular2 is starting to bleed at the edges.
+I have [looked at examples](http://plnkr.co/edit/G8FHkGisnGFp8U0m6W7F?p=preview) that use a straight object to set the styles.
+I would like to be able to change the members dynamically.  So I created [this plunker](http://plnkr.co/edit/Ur0F8Z1lUWCPwIKR0Emq?p=streamer) to isolate the problem and possibly make a post with it as the example.
+Since it's running in production mode, it is actually working better.  It changes styles, but breaks after the first change with the exceptions:
+```
+Angular 2 is running in the development mode. Call enableProdMode() to enable the production mode.
+EXCEPTION: Error during evaluation of "click"
+EXCEPTION: Expression 'setClasses() in AppComponent@11:10' has changed after it was checked. 
+Previous value: '[object Object]'. Current value: '[object Object]' in [setClasses() in AppComponent@11:10]
+```
+Doing another Google search for "EXCEPTION: Expression  has changed after it was checked"
+Comes up with another answer on the Angular GitHub site where Ward Bell gives this:
+
+The solution (for now) is to run your fn inside your component, capture its value in a component property, and bind to that property instead.
+Here's some pseudo-code:
+```
+<!-- Template HTML -->
+...[RouterLink]="theRoute" ...
+
+// Component
+theRoute: RouterLink;
+...
+theRoute = someFunction(whatever);
+```
+
+Trying to enable production mode with enableProdMode(), but not sure where to put that.  Calling it like that in the component doesn't work.  Calling it on the app boject in the boot file doesn't work.  Looking at the docs for this function, I found out that the original problem is also known as unidirectional data flow.  There is however, no help in how to use that function.  The docs say 'API Preview'.  So I guess preview means that it's not complete.  It's looking like Angular2 is not ready yet for production.
+A StackOverflow answer provided the solutions. You have to do this:
+```
+ import {enableProdMode} from 'angular2/core'; 
+ enableProdMode(); 
+ bootstrap(MainCmp, []) – user3636086 4 hours ago
+'beta' branch of github.com/meandemo/ng2-demo.git, has been updated.
+```
+So now, our sample app works!  Still, to hide the error is not a solution.  I'm wondering what the correct way to use the code for ngClass in the documentation is.
+[Here is the question](http://stackoverflow.com/questions/34833092/angular2-ngclass-docs-the-expression-setclasses-has-changed-after-it-was-c) I posted on StackOverflow.
+
+<hr/>    
 # Original Seed README Content
 A seed project for Angular 2 apps.
 

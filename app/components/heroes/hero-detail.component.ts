@@ -13,6 +13,9 @@ import {Hero} from './hero';
 /** */
 export class HeroDetailComponent {
     public hero: Hero;
+    public classes;
+    private stylar1 = true;
+    private stylar2 = true;
     constructor(
         private _router:Router,
         private _routeParams:RouteParams,
@@ -22,6 +25,8 @@ export class HeroDetailComponent {
         let id = this._routeParams.get('id');
         this._service.getHero(id).then(hero => {
             this.hero = hero;
+            this.updateClasses();
+            this.setClasses();
             console.log('received',hero);
         });
     }
@@ -33,6 +38,18 @@ export class HeroDetailComponent {
     //model = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
     submitted = true;
     onSubmit() { this.submitted = true; }
+    updateClasses() { 
+      this.hero.power ? this.stylar1 = true: this.stylar1 = false;
+      this.hero.alterEgo ? this.stylar2 = true: this.stylar2 = false;
+    }
+    setClasses() {
+        this.classes =  {
+            power: this.stylar1,      
+            alterEgo: this.stylar2,
+            standard: true
+        }
+        return this.classes;
+    }
     // TODO: Remove this when we're done
     get diagnostic() { return JSON.stringify(this.hero); }
 }

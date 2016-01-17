@@ -52,12 +52,11 @@ Indigo              { color:	 	  	#4B0082; }
 Ivory               { color:	 	 	#FFFFF0; }
 Khaki               { color:	 	 	#F0E68C; }
 Lavender            { color:	 	 	#E6E6FA; }
-LemonChiffon        { color:	 	#FFFACD; }
-LightBlue           { color:	 	#ADD8E6; }
-LightCoral          { color:	 	#F08080; }
-LightCyan           { color:	 	#E0FFFF; }
-LightGoldenRodYellow     { color:	 	#FAFAD2; }
-LightGray     { color:	 	#D3D3D3; }
+LemonChiffon        { color:	 	    #FFFACD; }
+LightCoral          { color:	 	    #F08080; }
+LightCyan           { color:	 	    #E0FFFF; }
+LightGoldenRodYellow{ color:	 	#FAFAD2; }
+LightGray       { color:	 	#D3D3D3; }
 LightGreen     { color:	 	#90EE90; }
 LightPink     { color:	 	#FFB6C1; }
 LightSalmon     { color:	 	#FFA07A; }
@@ -96,17 +95,16 @@ PaleGoldenRod     { color:	 	#EEE8AA; }
 PaleGreen     { color:	 	#98FB98; }
 PaleTurquoise     { color:	 	#AFEEEE; }
 PaleVioletRed     { color:	 	#DB7093; }
-PapayaWhip     { color:	 	#FFEFD5; }
-PeachPuff     { color:	 	#FFDAB9; }
-Peru     { color:	 	#CD853F; }
-Pink     { color:	 	#FFC0CB; }
+PapayaWhip        { color:	 	#FFEFD5; }
+PeachPuff         { color:	 	#FFDAB9; }
+Peru              { color:	 	#CD853F; }
+Pink              { color:	 	#FFC0CB; }
 Plum     { color:	 	#DDA0DD; }
 PowderBlue     { color:	 	#B0E0E6; }
 Purple     { color:	 	#800080; }
 RebeccaPurple     { color:	 	#663399; }
 Red     { color:	 	#FF0000; }
 RosyBrown     { color:	 	#BC8F8F; }
-RoyalBlue     { color:	     { color:	 	#4169E1; }
 SaddleBrown     { color:	 	#8B4513; }
 Salmon     { color:	 	#FA8072; }
 SandyBrown     { color:	 	#F4A460; }

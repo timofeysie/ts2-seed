@@ -22,6 +22,9 @@ export class HeroComponent implements OnInit {
   public title = 'Tour of Heroes';
   public heroes: Hero[];
   public selectedHero: Hero;
+  public classes;
+  private stylar1 = true;
+  private stylar2 = true;
   /** Angular will call getHeroes if we implement the ngOnInit Lifecycle Hook. 
    * Angular offers a number of interfaces for tapping into critical moments in the component lifecycle:
    * at creation, after each change, and at its eventual destruction.
@@ -32,17 +35,23 @@ export class HeroComponent implements OnInit {
   }
   onSelect(hero: Hero) { 
       this.selectedHero = hero;
-      this._router.navigate( ['HeroDetail', { id: hero.id }] ); }
-  getHeroes() {
+      hero.power ? this.stylar1 = true: this.stylar1 = false;
+      hero.alterEgo ? this.stylar2 = true: this.stylar2 = false;
+      this._router.navigate( ['HeroDetail', { id: hero.id }] ); 
+   }
+   getHeroes() {
     this._heroService.getHeroes().then(
         heroes => {
             this.heroes = heroes;
         });
-    // the slower method below uses a timeout to simulate a real connection.
-    // But it causes the following errors in VSCode:
-    // type '{}' is not assignable to type 'Hero[]'
-    // property length is missing in type '{}'
-    // this._heroService.getHeroesSlowly().then(
-    //     heroes => this.heroes = heroes);
-  }
+   }
+   setClasses() {
+    this.classes =  {
+        power: this.stylar1,      
+        alterEgo: this.stylar2,
+        standard: true
+    }
+        return this.classes;
+    }
+  
 }

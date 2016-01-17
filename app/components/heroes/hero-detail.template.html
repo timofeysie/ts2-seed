@@ -53,8 +53,9 @@
 <div class="container"
     [hidden]="!submitted">
   <div class="row">
-    <div class="col-xs-3">Name</div>
-    <div class="col-xs-9  pull-left">{{ hero.name }}</div>
+    <div class="col-xs-3">Name:</div>
+    <div class="col-xs-9  pull-left"
+        [ngClass]="classes">{{ hero.name }}</div>
   </div>
   <div class="row">
     <div class="col-xs-3">Alter Ego</div>

@@ -11,9 +11,27 @@
       left: -1px;
       top: -1px;
     }
-.selected { background-color: #EEE; color: #369; }
+.selected { background-color: #EEE; 
+    color: #369; }
 h1, h2 {
     text-align:center
+}
+.standard {
+  border-top: 5px solid WhiteSmoke;
+  border-left: 5px solid PapayaWhip;
+  border-right: 5px solid PaleGoldenRod; 
+  border-bottom: 5px solid BurlyWood; 
+  background-color: MintCream;
+  width: 50%;
+  text-align: center;
+}
+.power {
+  border-right: 5px solid Tomato; 
+  background-color: MediumTurquoise;
+}
+.alterEgo {
+  border-bottom: 5px solid Peru; 
+  background-color: DarkSeaGreen;
 }
 
 /* Form styles */
@@ -25,4 +43,12 @@ h1, h2 {
 }
 .ng-invalid {
   border-left: 5px solid #a94442; /* red */
+}
+
+.power {
+    border-right: 5px solid tomato; 
+}
+
+.alterEgo {
+    border-top: 2px solid peru; 
 }
