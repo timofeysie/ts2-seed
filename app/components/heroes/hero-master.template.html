@@ -1,9 +1,33 @@
-<h1>{{title}}</h1>
-<h2>...</h2>
+<h1 [myHighlight]="color" [defaultColor]="'DeepSkyBlue'">{{title}}</h1>
+<div class="row">
+    <div class="col-md-3 colorInput">
+      <input type="radio" 
+        name="colors" 
+        class="colorRadio"
+        (click)="color='DarkSlateGray'">
+        DarkSlateGray
+    </div>
+    <div class="col-md-3 colorInput">
+      <input type="radio" 
+        name="colors"  
+        class="colorRadio"
+        (click)="color='GoldenRod'">
+        GoldenRod
+    </div>
+    <div class="col-md-3 colorInput">
+      <input type="radio" 
+        name="colors"
+        class="colorRadio"
+        (click)="color='DarkSalmon'">
+        CyanDarkSalmon
+    </div>
+</div>
 <ul class="heroes">
    <li *ngFor="#hero of heroes"
         [class.selected]="hero === selectedHero"
         (click)="onSelect(hero)">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
+        <span class="badge">
+            {{hero.id}}</span> 
+            {{hero.name}}
    </li>
 </ul>

@@ -209,6 +209,46 @@ A StackOverflow answer provided the solutions. You have to do this:
 ```
 So now, our sample app works!  Still, to hide the error is not a solution.  I'm wondering what the correct way to use the code for ngClass in the documentation is.
 [Here is the question](http://stackoverflow.com/questions/34833092/angular2-ngclass-docs-the-expression-setclasses-has-changed-after-it-was-c) I posted on StackOverflow.
+The answer came after about 15 minutes:
+Change:
+```
+<h4 [ngClass]="setClasses()">
+```
+for:
+```
+<h4 [ngClass]="classes">
+```
+and call the setClasses method in the onSelect method:
+```
+onSelect(hero: Hero) { 
+    this.selectedHero = hero; 
+    hero.power ? this.stylar1 = true: this.stylar1 = false;
+    hero.alterEgo ? this.stylar2 = true: this.stylar2 = false;
+    this.setClasses();
+}
+```
+[plunker](http://plnkr.co/edit/95H4YNtdfn3y2KTdX8Xu?p=preview)
+by Langley, reputtion 1,298.
+
+That was so simple.  We did try calling that method in onSelect, but didn't think to use just the classes as the ngStyle target.
+The should be an expression, no?  In the docs, there is a long discussion about these bindings.  Maybe target is not the right word.
+
+#### HTML Attribute vs. DOM Property Notes
+    Attributes initialize DOM properties and then they are done.
+    Property values may change; attribute values don't.
+    HTML attributes and DOM properties are not the same thing even if they have the same name.
+    Template binding works with properties and events, not attributes.
+    ```<img bind-src="heroImageUrl”>``` <- src isn't the name of an attribute, 
+    It’s the name of an image element property (also matched to directive input, one of the property names
+    listed in the directive’s inputs array)
+
+For us, the 'classes' is a binding source.  A source property doesn't require a declaration.
+The 'ngClass' is a binding target. We must declare it as an input property. 
+Angular treats a target property differently for a good reason. A component or directive in target position needs protection.
+
+So the word we should have used above was source, not target:  ```[target]="source"```
+It just seems like you shoot an arrow at a target, so it should be the other way around, but whatever.
+
 
 <hr/>    
 # Original Seed README Content

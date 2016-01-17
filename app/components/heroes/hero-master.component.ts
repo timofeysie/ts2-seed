@@ -6,11 +6,13 @@ import {Hero} from './hero';
 import {HeroService} from '../../services/hero.service';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroFormComponent} from './hero-form.component';
+import {HighlightDirective} from './highlight.directive';
+
 @Component({
   selector: 'hero-selector',
   templateUrl: './components/heroes/hero-master.template.html',
   styleUrls: ['./components/heroes/hero-styles.css'],
-  directives: [HeroDetailComponent, HeroFormComponent],
+  directives: [HeroDetailComponent, HeroFormComponent, HighlightDirective],
   providers: [HeroService]
 })
 export class HeroComponent implements OnInit {
