@@ -1,4 +1,7 @@
 <h1 [myHighlight]="color" [defaultColor]="'DeepSkyBlue'">{{title}}</h1>
+    <div class="col-md-6 col-md-offset-3 colorInput">
+        <h5>Choose a highlight color</h5>
+    </div>
 <div class="row">
     <div class="col-md-3 colorInput">
       <input type="radio" 
@@ -22,6 +25,7 @@
         CyanDarkSalmon
     </div>
 </div>
+<hr />
 <ul class="heroes">
    <li *ngFor="#hero of heroes"
         [class.selected]="hero === selectedHero"

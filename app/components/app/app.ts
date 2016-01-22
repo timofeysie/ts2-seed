@@ -9,6 +9,8 @@ import {HomeCmp} from '../home/home';
 import {AboutCmp} from '../about/about';
 import {HeroComponent} from '../heroes/hero-master.component';
 import {HeroDetailComponent} from '../heroes/hero-detail.component';
+import {MyraComponent} from '../myra/myra-master.component';
+import {MyraDetailComponent} from '../myra/myra-detail.component';
 import {NameList} from '../../services/name_list';
 
 @Component({
@@ -24,6 +26,8 @@ import {NameList} from '../../services/name_list';
   { path: '/heroes',        component: HeroComponent, as: 'Heroes' }, // aka HeroListComponent w/ name Heroes
   { path: '/about',         component: AboutCmp, as: 'About' },
 //   { path: '/crisis-center', name: 'CrisisCenter', component: CrisisListComponent},
-   { path: '/hero/:id',      name: 'HeroDetail',   component: HeroDetailComponent}
+   { path: '/hero/:id',      name: 'HeroDetail',   component: HeroDetailComponent},
+   { path: '/myra',        component: MyraComponent, as: 'Myra' },
+   { path: '/myra/:id',      name: 'MyraDetail',   component: MyraDetailComponent}
 ])
 export class AppCmp {}

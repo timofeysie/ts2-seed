@@ -1,0 +1,28 @@
+import {Myra} from './myra';
+export var MYRAS: Myra[] = [
+  { 'id': 11, 'name': 'Mr. Nice' },
+  { 'id': 12, 'name': 'Narco' },
+  { 'id': 13, 'name': 'Bombasto' },
+  { 'id': 14, 'name': 'Celeritas' },
+  { 'id': 15, 'name': 'Magneta' },
+  { 'id': 16, 'name': 'RubberMan' },
+  { 'id': 17, 
+    'name': 'Dynama',
+    'power': 'Really Smart',  },
+  { 'id': 18, 
+    'name': 'Dr IQ', 
+    'power': 'Really Smart', 
+    'alterEgo': 'Chuck Overstreet'},
+  { 'id': 19, 
+    'name': 'Magma' },
+  { 'id': 20, 
+    'name': 'Tornado' },
+  { 'id': 42, 
+    'name': 'SkyDog', 
+    'power': 'Fetch any object at any distance', 
+    'alterEgo': 'Leslie Rollover'},
+  { 'id': 8, 
+    'name': 'J-Dragon', 
+    'power': 'Gets very annoyed', 
+    'alterEgo': 'Park Jinyoung'}
+];
