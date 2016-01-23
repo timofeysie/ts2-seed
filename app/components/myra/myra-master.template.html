@@ -1,4 +1,7 @@
-<h1 [myHighlight]="color" [defaultColor]="'DeepSkyBlue'">{{title}}</h1>
+<h1 [myHighlight]="color" 
+    [defaultColor]="'DeepSkyBlue'"
+    *ngIf="show">
+    {{title}}</h1>
 <!--<ul class="myras">
    <li *ngFor="#myra of myras"
         [class.selected]="myra === selectedMyra"
@@ -8,19 +11,22 @@
             {{myra.name}}
    </li>
 </ul>-->
-{{myras[0]}}
 <div class="parallax">
     <div id="group1" class="parallax__group">
       <div class="parallax__layer parallax__layer--base">
-        <div class="title">Base Layer 1</div><!-- Base -->
+        <!--<div class="title">Base Layer 1</div> Base -->
+        <img src="./assets/img/myra/5-myra4-5-is-myra-b-sky-only-d.png"
+            width="100%"
+            height="auto">
       </div>
     </div>
     <div id="group2" class="parallax__group">
-      <div class="parallax__layer parallax__layer--base">
-        <div class="title">Base Layer 2</div><!-- Base -->
-      </div><!-- -->
-      <div class="parallax__layer parallax__layer--back">
-        <div class="title">Background Layer 3</div><!-- -->
+      <div class="parallax__layer parallax__layer--base"> <!-- Base Layer 2 -->
+        <div class="title">The ferry from Palm Beach to Coasters Retreat and the Basin is called Myra.</div>
+      </div>
+      <div class="parallax__layer parallax__layer--back"><!-- Background Layer 3-->
+        <img src="./assets/img/myra/5-myra4-5-is-myra-b-myra-only.png"
+            width="100%">
       </div>
     </div>
     <div id="group3" class="parallax__group">
@@ -28,7 +34,9 @@
         <div class="title">Foreground Layer 4</div><!-- -->
       </div>
       <div class="parallax__layer parallax__layer--base">
-        <div class="title">Base Layer 5</div><!-- Base -->
+        <!-- Base Layer 5 -->
+        <img src="./assets/img/myra/5-myra4-5-is-myra-b-wharf-only-b.png"
+            width="100%">
       </div>
     </div>
     <div id="group4" class="parallax__group">
@@ -36,7 +44,7 @@
         <div class="title">Base Layer 6</div><!-- Base  -->
       </div><!-- -->
       <div class="parallax__layer parallax__layer--back">
-        <div class="title">Background Layer 7</div><!-- -->
+         <div class="title">Background Layer 7</div>
       </div>
       <div class="parallax__layer parallax__layer--deep">
 <!-- --><div class="title">Deep Background Layer 8</div><!-- -->
@@ -47,7 +55,7 @@
         <div class="title">Foreground Layer 9</div><!-- -->
       </div>
       <div class="parallax__layer parallax__layer--base">
-        <div class="title">Base Layer 10</div><!-- Base -->
+        <!--<div class="title">Base Layer 10</div>< Base -->
       </div>
     </div><!-- -->
     <div id="group6" class="parallax__group">

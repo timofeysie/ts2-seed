@@ -13,13 +13,27 @@ import {Directive, ElementRef, Renderer, Input} from 'angular2/core';
 export class HighlightDirective {
   @Input('myHighlight') highlightColor: string;
   private _defaultColor = 'DarkSalmon';
+  private _show = false;
    @Input() set defaultColor(colorName:string){
     this._defaultColor = colorName || this._defaultColor;
   }
   constructor(private el: ElementRef, private renderer: Renderer) { }
-  onMouseEnter() { this._highlight(this.highlightColor || this._defaultColor); }
-  onMouseLeave() { this._highlight("LightGoldenRodYellow"); }
+  onMouseEnter() { 
+      this._visibility(true);
+      this._show = true;
+  }
+  onMouseLeave() { 
+      this._visibility(false);
+      this._show = false;    
+  }
   private _highlight(color:string) {
     this.renderer.setElementStyle(this.el, 'backgroundColor', color);
+  }
+  private _visibility(on:boolean) {
+      if (on) {
+          this.renderer.setElementStyle(this.el, 'visibility', null);
+      } else {
+          this.renderer.setElementStyle(this.el, 'visibility', 'hidden');
+      }
   }
 }

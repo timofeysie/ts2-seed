@@ -1,4 +1,5 @@
 .sample-app-content {
+    margin-top: -5px;
   font-family: Verdana;
 }
 .sample-app-content h1 {
@@ -11,7 +12,7 @@
 }
 .sample-app-content p,
 .sample-app-content nav {
-  padding: 30px;
+  padding: 5px;
 }
 .sample-app-content li,
 .sample-app-content p {

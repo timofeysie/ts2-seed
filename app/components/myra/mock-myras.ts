@@ -1,7 +1,13 @@
 import {Myra} from './myra';
 export var MYRAS: Myra[] = [
-  { 'id': 11, 'name': 'Mr. Nice' },
-  { 'id': 12, 'name': 'Narco' },
+  { 'id': 0, 
+    'name': 'Myra the Ferryboat' },
+  { 'id': 2, 
+    'name': 'The ferry from Palm Beach to Coasters Retreat and the Basin is called Myra.',
+    'src1': '5-myra4-5-is-myra-b-sky-only.png',
+    'src2': '5-myra4-5-is-myra-b-myra-only.png',
+    'src3': '5-myra4-5-is-myra-b-wharf-only.png'
+  },
   { 'id': 13, 'name': 'Bombasto' },
   { 'id': 14, 'name': 'Celeritas' },
   { 'id': 15, 'name': 'Magneta' },
