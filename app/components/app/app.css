@@ -12,7 +12,7 @@
 }
 .sample-app-content p,
 .sample-app-content nav {
-  padding: 5px;
+  padding: 1px;
 }
 .sample-app-content li,
 .sample-app-content p {
@@ -31,3 +31,164 @@
   font-size: 1em;
   outline: none;
 }
+
+/* Menu states */
+nav {
+    position: fixed;
+    background-color: pink;
+    top: 0;
+    height: 25px;
+    width: 100%;
+    z-index: 100;
+    transform-origin: '50% 0';
+    transition-property: height;
+    transition-duration: .4s;
+    transition-timing-function: ease-in;
+    transition-delay: 0.1s;
+}
+
+nav:hover {
+    height: 75px;
+    background-color: lightgrey;
+}
+
+.min section {
+    background-color: pink;
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('/fonts/icomoon.eot?rjmxlw');
+    src:    url('/fonts/icomoon.eot?rjmxlw#iefix') format('embedded-opentype'),
+        url('./components/app/fonts/icomoon.ttf?rjmxlw') format('truetype'),
+        url('./components/app/fonts/icomoon.woff?rjmxlw') format('content-type:application/javascrip'),
+        url('/fonts/icomoon.svg?rjmxlw#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-happy:before {
+    content: "\e900";
+}
+.icon-happy2:before {
+    content: "\e901";
+}
+.icon-smile:before {
+    content: "\e902";
+}
+.icon-smile2:before {
+    content: "\e903";
+}
+.icon-tongue:before {
+    content: "\e904";
+}
+.icon-tongue2:before {
+    content: "\e905";
+}
+.icon-sad:before {
+    content: "\e906";
+}
+.icon-sad2:before {
+    content: "\e907";
+}
+.icon-wink:before {
+    content: "\e908";
+}
+.icon-wink2:before {
+    content: "\e909";
+}
+.icon-grin:before {
+    content: "\e90a";
+}
+.icon-grin2:before {
+    content: "\e90b";
+}
+.icon-cool:before {
+    content: "\e90c";
+}
+.icon-cool2:before {
+    content: "\e90d";
+}
+.icon-angry:before {
+    content: "\e90e";
+}
+.icon-angry2:before {
+    content: "\e90f";
+}
+.icon-evil:before {
+    content: "\e910";
+}
+.icon-evil2:before {
+    content: "\e911";
+}
+.icon-shocked:before {
+    content: "\e912";
+}
+.icon-shocked2:before {
+    content: "\e913";
+}
+.icon-baffled:before {
+    content: "\e914";
+}
+.icon-baffled2:before {
+    content: "\e915";
+}
+.icon-confused:before {
+    content: "\e916";
+}
+.icon-confused2:before {
+    content: "\e917";
+}
+.icon-neutral:before {
+    content: "\e918";
+}
+.icon-neutral2:before {
+    content: "\e919";
+}
+.icon-hipster:before {
+    content: "\e91a";
+}
+.icon-hipster2:before {
+    content: "\e91b";
+}
+.icon-wondering:before {
+    content: "\e91c";
+}
+.icon-wondering2:before {
+    content: "\e91d";
+}
+.icon-sleepy:before {
+    content: "\e91e";
+}
+.icon-sleepy2:before {
+    content: "\e91f";
+}
+.icon-frustrated:before {
+    content: "\e920";
+}
+.icon-frustrated2:before {
+    content: "\e921";
+}
+.icon-crying:before {
+    content: "\e922";
+}
+.icon-crying2:before {
+    content: "\e923";
+}
+
