@@ -12,6 +12,16 @@ import {HeroDetailComponent} from '../heroes/hero-detail.component';
 import {MyraComponent} from '../myra/myra-master.component';
 import {MyraDetailComponent} from '../myra/myra-detail.component';
 import {NameList} from '../../services/name_list';
+// Imports for the typeahead wikipedia search service                    
+import {bootstrap} from 'angular2/platform/browser';
+import {Control} from 'angular2/common';
+import {JSONP_PROVIDERS} from 'angular2/http';
+import {WikipediaService} from '../../services/wikipedia-service'
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app',
@@ -30,4 +40,18 @@ import {NameList} from '../../services/name_list';
    { path: '/myra',        component: MyraComponent, as: 'Myra' },
    { path: '/myra/:id',      name: 'MyraDetail',   component: MyraDetailComponent}
 ])
-export class AppCmp {}
+export class AppCmp {
+    /*
+    Trying to add the typeahead demo using obeservables.
+    The problem is: EXCEPTION: No provider for WikipediaService! (AppCmp -> WikipediaService)
+    Also, the wikepedia service is not findind the term string.
+    This is just a configuration issue.
+    There is a working plunker here: http://plnkr.co/edit/KuWUpfGoeJLDSPBibjrn?p=preview
+    It's discussed in this blog: http://blog.thoughtram.io/angular/2016/01/07/taking-advantage-of-observables-in-angular2-pt2.html
+    */
+//   items: Observable<Array<string>>;
+//   term = new Control();
+//   constructor(private wikipediaService: WikipediaService) {
+//     this.items = wikipediaService.search(this.term.valueChanges);
+//   }
+}
